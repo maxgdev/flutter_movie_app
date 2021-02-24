@@ -5,7 +5,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,20 +26,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Text("Flutter Movie App", style: TextStyle(fontSize: 20),),
-      ),
- 
-    );
+        appBar: AppBar(
+            centerTitle: true,
+            title: Text(widget.title),
+            backgroundColor: Colors.blueGrey.shade900),
+        // background color for body/rest of app
+        backgroundColor: Colors.blueGrey.shade400,
+        body: ListView.builder(itemBuilder: (BuildContext context, int index) {
+          return Card(
+            color: Colors.white,
+            child: ListTile(
+              title: Text("Movie title"),
+            ),
+          );
+        }));
   }
 }
