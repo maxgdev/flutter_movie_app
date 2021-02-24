@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/basic.dart';
+import './movie.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,20 +29,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List movies = [
-    "The Shawshank Redemption",
-    "The Godfather",
-    "The Dark Knight",
-    "Pulp Fiction",
-    "The Good, the Bad and the Ugly",
-    "Fight Club",
-    "Inception",
-    "The Matrix",
-    "Seven Samurai ",
-    "City of God",
-    "Leon",
-    "Avengers: Infinity War",
-  ];
+  final List<Movie> movieList = Movie.getMovies();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // background color for body/rest of app
         backgroundColor: Colors.blueGrey.shade400,
         body: ListView.builder(
-            itemCount: movies.length,
+            itemCount: movieList.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 5,
@@ -60,22 +49,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ListTile(
                   leading: CircleAvatar(
                     child: Container(
+                      width: 200,
+                      height: 200,
                       decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(movieList[index].images[0]),
+                          fit: BoxFit.cover
+                        ),
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(14)),
-                      // child: Text("$index"),
-                      child: Text(movies[index].substring(0, 1)),
                     ),
                   ),
                   trailing: Text("..."),
-                  title: Text(movies[index]),
+                  title: Text(movieList[index].title),
                   subtitle: Text('subtitle'),
-                  // onTap: () => {debugPrint("Movie name: ${movies.elementAt(index)}")},
                   onTap: () => {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MovieDetails(movieName: movies[index],))) // Navigator
+                            builder: (context) => MovieDetails(
+                                  movie: movieList[index],
+                                ))) // Navigator
                   },
                 ),
               );
@@ -84,22 +78,23 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class MovieDetails extends StatelessWidget {
-  final String movieName;
+  
+  final Movie movie;
   // Note the use if the Key. Enables widget to lin k properly with calling/parent widget??
   // {} in constuector indicates novieName is optional
-  const MovieDetails({Key key, this.movieName}) : super(key: key);
+  const MovieDetails({Key key, this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(movieName),
+        title: Text(movie.title),
         backgroundColor: Colors.blueGrey.shade900,
       ),
       body: Center(
         child: Container(
           child: RaisedButton(
-              child: Text(movieName),
+              child: Text(movie.title),
               onPressed: () => {Navigator.pop(context)}),
         ),
       ),
