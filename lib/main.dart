@@ -62,7 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(14)
                       ),
-                      child: Text("$index"),
+                      // child: Text("$index"),
+                      child: Text(movies[index].substring(0, 1).toUpperCase()),
                     ),
                   ),
                   title: Text(movies[index]),
