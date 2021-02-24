@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/basic.dart';
 
 void main() {
@@ -72,10 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   // onTap: () => {debugPrint("Movie name: ${movies.elementAt(index)}")},
                   onTap: () => {
                     Navigator.push(
-                        context, MaterialPageRoute(
-                          builder: (context) => MovieDetails()
-                          )
-                    ) // Navigator
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovieDetails(movieName: movies[index],))) // Navigator
                   },
                 ),
               );
@@ -84,20 +84,23 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class MovieDetails extends StatelessWidget {
+  final String movieName;
+  // Note the use if the Key. Enables widget to lin k properly with calling/parent widget??
+  // {} in constuector indicates novieName is optional
+  const MovieDetails({Key key, this.movieName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movie Details"),
+        title: Text(movieName),
         backgroundColor: Colors.blueGrey.shade900,
       ),
       body: Center(
         child: Container(
           child: RaisedButton(
-            child: Text("Press me"), 
-            onPressed: () => {
-              Navigator.pop(context)
-            }),
+              child: Text(movieName),
+              onPressed: () => {Navigator.pop(context)}),
         ),
       ),
     );
