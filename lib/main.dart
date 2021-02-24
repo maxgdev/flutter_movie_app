@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/basic.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,17 +60,46 @@ class _MyHomePageState extends State<MyHomePage> {
                   leading: CircleAvatar(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(14)
-                      ),
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(14)),
                       // child: Text("$index"),
-                      child: Text(movies[index].substring(0, 1).toUpperCase()),
+                      child: Text(movies[index].substring(0, 1)),
                     ),
                   ),
+                  trailing: Text("..."),
                   title: Text(movies[index]),
                   subtitle: Text('subtitle'),
+                  // onTap: () => {debugPrint("Movie name: ${movies.elementAt(index)}")},
+                  onTap: () => {
+                    Navigator.push(
+                        context, MaterialPageRoute(
+                          builder: (context) => MovieDetails()
+                          )
+                    ) // Navigator
+                  },
                 ),
               );
             }));
+  }
+}
+
+class MovieDetails extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Movie Details"),
+        backgroundColor: Colors.blueGrey.shade900,
+      ),
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text("Press me"), 
+            onPressed: () => {
+              Navigator.pop(context)
+            }),
+        ),
+      ),
+    );
   }
 }
