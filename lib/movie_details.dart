@@ -14,12 +14,17 @@ class MovieDetails extends StatelessWidget {
         title: Text(movie.title),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-              child: Text(movie.title),
-              onPressed: () => {Navigator.pop(context)}),
-        ),
+      body: Column(
+        children: [
+          // movieImage(movie.images[0]),
+          Center(
+            child: Container(
+              child: RaisedButton(
+                  child: Text(movie.title),
+                  onPressed: () => {Navigator.pop(context)}),
+            ),
+          ),
+        ],
       ),
     );
   }

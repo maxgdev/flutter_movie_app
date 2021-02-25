@@ -44,38 +44,28 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView.builder(
             itemCount: movieList.length,
             itemBuilder: (BuildContext context, int index) {
-              return movieCard(movieList[index], context);
-              // return Card(
-              //   elevation: 5,
-              //   color: Colors.white,
-              //   child: ListTile(
-              //     leading: CircleAvatar(
-              //       child: Container(
-              //         width: 200,
-              //         height: 200,
-              //         decoration: BoxDecoration(
-              //             image: DecorationImage(
-              //                 image: NetworkImage(movieList[index].images[0]),
-              //                 fit: BoxFit.cover),
-              //             color: Colors.blue,
-              //             borderRadius: BorderRadius.circular(14)),
-              //       ),
-              //     ),
-              //     trailing: Text("..."),
-              //     title: Text(movieList[index].title),
-              //     subtitle: Text('subtitle'),
-              //     onTap: () => {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => MovieDetails(
-              //                     movie: movieList[index],
-              //                   ))) // Navigator
-              //     },
-              //   ),
-              // );
+              return Stack(
+                children: [
+                  movieCard(movieList[index], context),
+                  Positioned(
+                    top: 10,
+                    child: movieImage(movieList[index].images[0])),
+                  
+                ]);
             }));
   }
+}
+Widget movieImage(String imageUrl) {
+  return Container(
+    width: 100,
+    height: 100,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      image: DecorationImage(image: NetworkImage(imageUrl),
+      fit: BoxFit.cover
+      ),
+    ),
+  );
 }
 
 
