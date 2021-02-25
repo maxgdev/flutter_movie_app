@@ -5,4 +5,4 @@ Flutter Movie App
 ## Credits
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
-
+- [Packt Publishing] (https://www.packtpub.com/)

@@ -228,14 +228,18 @@ class MovieExtraPosters extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("More MOvie Posters".toUpperCase(),
-        style: TextStyle(
-          fontSize: 14,
-          color: Colors.black38
-        )
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("More MOvie Posters".toUpperCase(),
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.black38
+          )
+          ),
         ),
         Container(
-          height: 200,
+          height: 180,
+          // padding: EdgeInsets.symmetric(vertical: 10),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) => SizedBox(width: 8,), 
