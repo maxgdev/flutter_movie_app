@@ -60,6 +60,7 @@ Widget movieImage(String imageUrl) {
     width: 100,
     height: 100,
     decoration: BoxDecoration(
+      border: Border.all(color: Colors.black45, width: 2),
       shape: BoxShape.circle,
       image: DecorationImage(image: NetworkImage(imageUrl),
       fit: BoxFit.cover
