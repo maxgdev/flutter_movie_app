@@ -20,7 +20,9 @@ class MovieDetails extends StatelessWidget {
           MovieDetailsThumbnail(
             thumbnail: movie.images[0],
           ),
-          MovieDetailsPoster(movie: movie,)
+          MovieDetailsPoster(
+            movie: movie,
+          )
         ],
       ),
       // body: Column(
@@ -91,7 +93,13 @@ class MovieDetailsPoster extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          MoviePoster(poster: movie.images[1].toString(),)
+          MoviePoster(
+            poster: movie.images[1].toString(),
+          ),
+          SizedBox(width: 16),
+          Expanded(
+            child: MovieDetailsHeader(movie: movie),
+          ),
         ],
       ),
     );
@@ -113,13 +121,56 @@ class MoviePoster extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 4,
           height: 160,
           decoration: BoxDecoration(
-            image: DecorationImage(image: NetworkImage(poster),
+              image: DecorationImage(
+            image: NetworkImage(poster),
             fit: BoxFit.cover,
-          )
-          
-          ),
+          )),
         ),
       ),
+    );
+  }
+}
+
+class MovieDetailsHeader extends StatelessWidget {
+  final Movie movie;
+
+  const MovieDetailsHeader({Key key, this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("${movie.year} . ${movie.genre}".toUpperCase(),
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: Colors.grey.shade900
+          ),
+        ),
+        Text("${movie.title}".toUpperCase(),
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 26,
+            color: Colors.blueGrey.shade900
+          ),
+        ),
+        Text.rich(TextSpan(
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w300,
+          ),
+          children: <TextSpan>[
+            TextSpan(
+              text: movie.plot
+            ),
+            TextSpan(
+              text: "More...", 
+              style: TextStyle(color: Colors.lightBlueAccent) 
+            )
+          ]
+          )
+        ),
+      ],
     );
   }
 }
