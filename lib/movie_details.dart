@@ -14,18 +14,61 @@ class MovieDetails extends StatelessWidget {
         title: Text(movie.title),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      body: Column(
+
+      body: ListView(
         children: [
-          // movieImage(movie.images[0]),
-          Center(
-            child: Container(
-              child: RaisedButton(
-                  child: Text(movie.title),
-                  onPressed: () => {Navigator.pop(context)}),
-            ),
-          ),
+          MovieDetailsThumbnail(thumbnail: movie.images[0],)
         ],
       ),
+      // body: Column(
+      //   children: [
+      //     // movieImage(movie.images[0]),
+      //     Center(
+      //       child: Container(
+      //         child: RaisedButton(
+      //             child: Text(movie.title),
+      //             onPressed: () => {Navigator.pop(context)}),
+      //       ),
+      //     ),
+      //   ],
+      // ),
+    );
+  }
+}
+
+class MovieDetailsThumbnail extends StatelessWidget {
+  final String thumbnail;
+
+  const MovieDetailsThumbnail({Key key, this.thumbnail}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: <Widget>[
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              // use media query to find size of screen width
+              width: MediaQuery.of(context).size.width,
+              height: 190,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(thumbnail),
+                  fit: BoxFit.cover
+                )
+              ),
+            ),
+            Icon(
+              Icons.play_circle_fill_outlined, 
+              size: 100,
+              color: Colors.white,
+            ),
+            
+          ],
+          )
+      ],
     );
   }
 }

@@ -38,9 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
             centerTitle: true,
             title: Text(widget.title),
-            backgroundColor: Colors.blueGrey.shade900),
+            // backgroundColor: Colors.blueGrey.shade900
+            backgroundColor: Colors.black45
+            ),
         // background color for body/rest of app
-        backgroundColor: Colors.blueGrey.shade400,
+        backgroundColor: Colors.blueGrey.shade900,
         body: ListView.builder(
             itemCount: movieList.length,
             itemBuilder: (BuildContext context, int index) {
