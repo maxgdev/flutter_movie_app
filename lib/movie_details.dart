@@ -22,21 +22,11 @@ class MovieDetails extends StatelessWidget {
           ),
           MovieDetailsPoster(
             movie: movie,
-          )
+          ),
+          MovieDetailsCast(movie: movie),
+
         ],
       ),
-      // body: Column(
-      //   children: [
-      //     // movieImage(movie.images[0]),
-      //     Center(
-      //       child: Container(
-      //         child: RaisedButton(
-      //             child: Text(movie.title),
-      //             onPressed: () => {Navigator.pop(context)}),
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
@@ -141,34 +131,79 @@ class MovieDetailsHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("${movie.year} . ${movie.genre}".toUpperCase(),
+        Text(
+          "${movie.year} . ${movie.genre}".toUpperCase(),
           style: TextStyle(
-            fontWeight: FontWeight.w400,
-            color: Colors.grey.shade900
-          ),
+              fontWeight: FontWeight.w400, color: Colors.grey.shade900),
         ),
-        Text("${movie.title}".toUpperCase(),
+        Text(
+          "${movie.title}".toUpperCase(),
           style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
-            color: Colors.blueGrey.shade900
-          ),
+              fontWeight: FontWeight.w500,
+              fontSize: 26,
+              color: Colors.blueGrey.shade900),
         ),
         Text.rich(TextSpan(
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w300,
-          ),
-          children: <TextSpan>[
-            TextSpan(
-              text: movie.plot
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w300,
             ),
-            TextSpan(
-              text: "More...", 
-              style: TextStyle(color: Colors.lightBlueAccent) 
-            )
-          ]
+            children: <TextSpan>[
+              TextSpan(text: movie.plot),
+              TextSpan(
+                  text: "More...",
+                  style: TextStyle(color: Colors.lightBlueAccent))
+            ])),
+      ],
+    );
+  }
+}
+
+class MovieDetailsCast extends StatelessWidget {
+  final Movie movie;
+
+  const MovieDetailsCast({Key key, this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        children:[
+          MovieField(field: "Cast", value: movie.actors),
+          MovieField(field: "Directors", value: movie.director),
+          MovieField(field: "Awards", value: movie.awards),
+        ]
+      ),
+    );
+  }
+}
+
+class MovieField extends StatelessWidget {
+  final String field;
+  final String value;
+
+  const MovieField({Key key, this.field, this.value}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("$field : ", 
+          style: TextStyle(
+            color: Colors.black38,
+            fontSize: 12,
+            fontWeight: FontWeight.w300
           )
+        ),
+        Expanded(
+          child: Text(value, 
+            style: TextStyle(
+              color: Colors.black54,
+              fontSize: 12,
+              fontWeight: FontWeight.w300
+            )
+          ),
         ),
       ],
     );
