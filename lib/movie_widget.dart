@@ -19,15 +19,17 @@ Widget movieCard(Movie movie, BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    movie.title,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                  Flexible(
+                    child: Text(
+                      movie.title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Text("Rating: ${movie.imdbRating} / 10",
-                      style: TextStyle(color: Colors.grey, fontSize: 14)),
+                      style: cardTextStyle()),
                 ],
               ),
               Row(
