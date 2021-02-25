@@ -16,42 +16,29 @@ Widget movieCard(Movie movie, BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    movie.title, 
+                    movie.title,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),),
-                  Text("Rating: ${movie.imdbRating} / 10", 
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14)
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
+                  Text("Rating: ${movie.imdbRating} / 10",
+                      style: TextStyle(color: Colors.grey, fontSize: 14)),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Released: ${movie.released}",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14)
-                  ),
+                      style: cardTextStyle()),
                   Text(movie.runtime,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14)
-                  ),
+                      style: cardTextStyle()),
                   Text(movie.rated,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14)
-                  ),
-                  
+                      style: cardTextStyle()),
                 ],
               )
             ],
@@ -68,7 +55,9 @@ Widget movieCard(Movie movie, BuildContext context) {
   );
 }
 
-
+TextStyle cardTextStyle() {
+  return TextStyle(color: Colors.grey, fontSize: 14);
+}
 
 // return Card(
 //   elevation: 5,
