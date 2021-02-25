@@ -23,8 +23,9 @@ class MovieDetails extends StatelessWidget {
           MovieDetailsPoster(
             movie: movie,
           ),
+          HorizontalLine(),
           MovieDetailsCast(movie: movie),
-
+          HorizontalLine(),
         ],
       ),
     );
@@ -206,6 +207,19 @@ class MovieField extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class HorizontalLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
+      child: Container(
+        height: 0.5,
+        color: Colors.grey,
+      ),
     );
   }
 }
